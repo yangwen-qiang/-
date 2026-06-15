@@ -14,7 +14,7 @@ namespace 智能罐装生产线监控系统
 {
     public partial class MainWindowVM:ObservableObject
     {
-        [ObservableProperty]
+        [ObservableProperty]//自动生成属性
         public object userControl;
 
         private IServiceProvider serviceProvider;
@@ -26,13 +26,39 @@ namespace 智能罐装生产线监控系统
 
         private void NavigateToDashBoard()
         {
-            userControl = serviceProvider.GetRequiredService<DashBoardViewModel>();
+            UserControl = serviceProvider.GetRequiredService<DashBoardViewModel>();
         }
 
         [RelayCommand]
         public void Navigate(string destination)
         {
+            if (!string.IsNullOrEmpty(destination)&&destination!="")
+            {
+                switch (destination)
+                {
+                    case "Dashboard":
+                        UserControl = serviceProvider.GetRequiredService<DashBoardViewModel>();
+                        break;
 
+                    case "Query":
+                        UserControl = serviceProvider.GetRequiredService<DashQueryViewModel>();
+                        break;
+                    case "Logs":
+                        UserControl = serviceProvider.GetRequiredService<LogsViewModel>();
+                        break;
+                    case "Alarm":
+                        UserControl = serviceProvider.GetRequiredService<AlarmsViewModel>();
+                        break;
+                    case "Setting":
+                        UserControl = serviceProvider.GetRequiredService<SettingViewModel>();
+                        break;
+                    default:
+                        break;
+
+
+                }
+            }
+            
         }
     }
 }

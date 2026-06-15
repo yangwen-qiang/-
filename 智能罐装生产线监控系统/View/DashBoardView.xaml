@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:智能罐装生产线监控系统.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="Blue">
             
     </Grid>
 </UserControl>

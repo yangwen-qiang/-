@@ -1,5 +1,24 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:智能罐装生产线监控系统.ViewModel"
+                    xmlns:views="clr-namespace:智能罐装生产线监控系统.View">
+    
+
+    <DataTemplate DataType="{x:Type vm:DashBoardViewModel}">
+        <views:DashBoardView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:AlarmsViewModel}">
+        <views:AlarmsView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:DashQueryViewModel}">
+        <views:DashQueryView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:LogsViewModel}">
+        <views:LogsView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:SettingViewModel}">
+        <views:SettingView />
+    </DataTemplate>
 
 
     <!--主应用深色背景-->
