@@ -17,7 +17,10 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
+        <StackPanel Orientation="Horizontal" Grid.Column="1">
+            <TextBlock Text="{Binding CurrentTime}" Foreground="{StaticResource AppTextMuted}" FontSize="14" FontFamily="Consolas" Margin="0,0,20,0"/>
+        </StackPanel>
+        
         <UserControl:NavigationMenu Grid.RowSpan="2" />
         <ContentControl Grid.Row="1" Grid.Column="1" Margin="20" Content="{Binding UserControl}" Background="{StaticResource AppBgDark}"/>
     </Grid>

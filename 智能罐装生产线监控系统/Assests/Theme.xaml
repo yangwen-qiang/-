@@ -44,7 +44,7 @@
     <SolidColorBrush x:Key="AppDanger" Color="#D50000"/>
     <!--通用边框背景：控件边框，card背景-->
     <SolidColorBrush x:Key="AppBorderBrush" Color="#3E3E42"/>
-
+     <!--导航栏样式-->
     <Style x:Key="NavigItemStyle" TargetType="RadioButton">
         <Setter Property="Foreground" Value="{StaticResource AppTextMuted}"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -76,5 +76,14 @@
         </Setter>
 
     </Style>
+    <!--通讯设置区域背景-->
+    <Style x:Key="CardStyle" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource AppBgDark}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource AppBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Padding" Value="15"/>
+    </Style>
+    
       
 </ResourceDictionary>
