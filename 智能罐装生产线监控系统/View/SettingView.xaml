@@ -25,7 +25,7 @@
                     <TextBlock Text="串口号" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Foreground="White"/>
                     <ComboBox  Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"  ItemsSource="{Binding PortNames}" SelectedValue="{Binding PortName}" />
                     <TextBlock Text="波特率" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Foreground="White" Margin="0,8,0,0"/>
-                    <ComboBox  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"  ItemsSource="{Binding BaudRates}" SelectedValue="{Binding SelectedBauds}" Margin="0,8,0,0" />
+                    <ComboBox  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"  ItemsSource="{Binding BaudRates}" SelectedValue="{Binding SelectedtBaud}" Margin="0,8,0,0" />
                     <TextBlock Text="数据位" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Foreground="White" Margin="0,8,0,0"/>
                     <ComboBox  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"  ItemsSource="{Binding DataBitOptions}" SelectedValue="{Binding SelectedDataBits}" Margin="0,8,0,0" />
                     <TextBlock Text="校验位" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Foreground="White" Margin="0,8,0,0"/>

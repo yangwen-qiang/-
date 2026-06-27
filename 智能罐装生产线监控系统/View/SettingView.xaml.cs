@@ -30,6 +30,15 @@ namespace 智能罐装生产线监控系统.View
             {
                 DataContext = app.ServiceProvider.GetRequiredService<SettingViewModel>();
             }
+            this.Loaded += SettingView_Loaded;
+        }
+        //窗口每次打开作初始化
+        private async void SettingView_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is SettingViewModel model)
+            {
+                await model.InitializeAsync();
+            }
         }
     }
 }
