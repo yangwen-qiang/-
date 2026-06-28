@@ -56,6 +56,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
+                    <!--绑定的作用就是让触发器能够改变该Border-->
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <ContentPresenter/>
                     </Border>
@@ -84,6 +85,66 @@
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="Padding" Value="15"/>
     </Style>
-    
+    <!--日志标题样式设置-->
+    <Style x:Key="TabItem11" TargetType="TabItem">
+        <Setter Property="Foreground" Value="{StaticResource AppTextMuted}"/>
+        <Setter Property="Padding" Value="10,6"/>
+        <Setter Property="Margin" Value="2,0,2,0"/>
+        <Setter Property="MinWidth" Value="64"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Border x:Name="bd" BorderBrush="Transparent" Background="Transparent" BorderThickness="0" CornerRadius="6,6,0,0">
+                        <ContentPresenter ContentSource="Header" Margin="10,5"/>
+                        <!--绑定父控件的依赖属性Header-->
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="bd" Property="Background" Value="#777777"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="bd" Property="Background" Value="{StaticResource AppBgHeader}" />
+                            <Setter TargetName="bd" Property="BorderBrush" Value="{StaticResource AppAccentColor}" />
+                            <Setter  Property="Foreground" Value="{StaticResource AppTextMain}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bd" Property="Background" Value="#2E2E2E" />
+                            <Setter Property="Foreground" Value="{StaticResource AppTextMain}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--日志内容样式-->
+    <Style x:Key="TabControlContext" TargetType="TabControl">
+        <Setter Property="Background" Value="{StaticResource AppBgDark}"/>
+        <Setter Property="Padding" Value="6"/>
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TabItem11}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border Background="Transparent" Padding="6,6,6,0">
+                            <!--意思是“所有 TabItem 的头部（Header）都自动放到这个面板里-->
+                            <TabPanel IsItemsHost="True" Name="HeaderPanel" Margin="1"/>
+                        </Border>
+                        <Border Grid.Row="1" Background="{StaticResource AppBgPanel}" 
+                                BorderBrush="{StaticResource AppBorderBrush}" 
+                                BorderThickness="1" 
+                                CornerRadius="0,6,6,6" 
+                                Margin="0,8,0,0" 
+                                Padding="{TemplateBinding Padding}" >
+                            <ContentPresenter x:Name="PART_SelectedContentHost"  ContentSource="SelectedContent" Margin="8"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
       
 </ResourceDictionary>
