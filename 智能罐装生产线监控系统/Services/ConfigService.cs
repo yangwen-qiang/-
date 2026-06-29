@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using 智能罐装生产线监控系统.Models;
+using 智能罐装生产线监控系统.Services.Logs;
 
 namespace 智能罐装生产线监控系统.Services
 {
@@ -39,18 +40,26 @@ namespace 智能罐装生产线监控系统.Services
                     if(settingmodel != null )
                     {
                         //完成文件读取
+                        LogService.Info("串口配置文件完成读取");
                        return settingmodel;
                     }
-                    else
-                    {
-                        //恢复默认值
-                        settingmodel = new SettingModel();
-                    }
+                   
                 }
+                else
+                {
+                    LogService.Warning($"串口文件不存在{path}");
+                }
+            }
+            catch(JsonException jsonEx)
+            {
+                LogService.Error($"配置文件格式错误，将其重置为默认值{jsonEx.Message}");
+                settingmodel = new SettingModel();
+                //备份文件
+                BackCorruptFile(path);
             }
             catch (Exception ex)
             {
-                BackCorruptFile(path);
+                LogService.Error($"读取配置文件失败:{ex.Message}");
             }
             finally
             {
@@ -81,13 +90,13 @@ namespace 智能罐装生产线监控系统.Services
                 var json = JsonSerializer.Serialize(settingmodel, new JsonSerializerOptions { WriteIndented = true });
                 await File.WriteAllTextAsync(PathTemp, json);
                 File.Move(PathTemp, path, true);//覆盖写入
-                                                //写入成功
+                LogService.Info("串口配置文件写入成功");    //写入成功
                 return true;
 
             }
             catch (Exception ex)
             {
-
+                LogService.Error($"串口配置文件写入失败：{ex.Message}");
                 return false;
             }
             finally
@@ -111,6 +120,7 @@ namespace 智能罐装生产线监控系统.Services
             {
                 string BackupPath = path + "-BackCorrup-" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 File.Copy(path, BackupPath, true);
+                LogService.Warning($"已备份损坏文件为{BackupPath}");
 
             }
             catch (Exception ex)

@@ -4,13 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:智能罐装生产线监控系统.View"
+             xmlns:smartFill="clr-namespace:智能罐装生产线监控系统"
              xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="900">
     <Grid>
         <TabControl Style="{StaticResource TabControlContext}">
             <TabItem Header="Logs" Style="{StaticResource TabItem11}" IsSelected="True" >
-                <ContentControl />
+                <ContentControl  Content="{x:Static smartFill:App.LogsView}" Margin="5"/>
             </TabItem>
             <TabItem Header="LogAnalyze" Style="{StaticResource TabItem11}">
                 <Grid>
