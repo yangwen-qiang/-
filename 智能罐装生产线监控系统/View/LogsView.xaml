@@ -25,26 +25,26 @@
                             <TextBlock Text="从:" Margin="0,0,5,0" Foreground="White" VerticalAlignment="Center"/>
                             <hc:DateTimePicker SelectedDateTime="{Binding StartDate}"  VerticalAlignment="Center" Width="120"/>
                             <TextBlock Text="到:" Margin="10,0,5,0" Foreground="White" VerticalAlignment="Center"/>
-                            <hc:DateTimePicker SelectedDateTime="{Binding StartDate}"  VerticalAlignment="Center" Width="120"/>
+                            <hc:DateTimePicker SelectedDateTime="{Binding EndDate}"  VerticalAlignment="Center" Width="120"/>
                             <TextBlock Text="等级:" Margin="10,0,0,5" VerticalAlignment="Center" Foreground="White"/>
                             <ComboBox ItemsSource="{Binding Levels}" SelectedItem="{Binding SelelctLevel}" VerticalAlignment="Center" Width="120"/>
                             <TextBlock Text="搜索" Margin="10,0,5,5" VerticalAlignment="Center" Foreground="White"/>
-                            <TextBox VerticalAlignment="Center" Width="150" Margin="10,0,10,0"/>
-                            <Button Content="查询"  Margin="5,0,10,0"/>
-                            <Button Content="导出Csv"  Margin="10,0,0,0"/>
+                            <TextBox VerticalAlignment="Center" Width="150" Margin="10,0,10,0" Text="{Binding Searchtext}"/>
+                            <Button Content="查询"  Margin="5,0,10,0" Command="{Binding QueryCommand}" Foreground="White" Background="#007ACC"/>
+                            <Button Content="导出Csv"  Margin="10,0,0,0" Command="{Binding ExportCommand}" Foreground="White" Background="LawnGreen"/>
                         </StackPanel>
                     </Border>
-                    <DataGrid Grid.Row="1">
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Logs}" VerticalScrollBarVisibility="Auto">
                         
                     </DataGrid>
                     <Border Grid.Row="2" Background="Transparent">
                         <Grid>
-                            <TextBlock Text="正在查询" Foreground="LimeGreen" FontSize="14" VerticalAlignment="Center" Margin="5" HorizontalAlignment="Left"/>
+                            <TextBlock Text="正在查询" Foreground="LimeGreen" Visibility="{Binding Isbuys,Converter={StaticResource Boolean2VisibilityConverter}}" FontSize="14" VerticalAlignment="Center" Margin="5" HorizontalAlignment="Left" />
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,5,10,5" Orientation="Horizontal">
                                 <TextBlock Text="{Binding TotalCount,StringFormat='共{0}条记录'}" VerticalAlignment="Center" Margin="0,0,20,0" Foreground="Gray"/>
-                                <Button Content="上一页" VerticalAlignment="Center" Width="80" Foreground="White" Background="{StaticResource AppBgDark}"/>
-                                <TextBlock Text="{Binding PageIndex,StringFormat='第{0}页'}" VerticalAlignment="Center" Margin="0,0,20,0" Foreground="Gray"/>
-                                <Button Content="下一页" VerticalAlignment="Center" Width="80" Foreground="White" Background="{StaticResource AppBgDark}"/>
+                                <Button Content="上一页" VerticalAlignment="Center" Width="80" Foreground="White" Background="{StaticResource AppBgDark}" Command="{Binding PreviousPageCommand}"/>
+                                <TextBlock Text="{Binding Indexpage,StringFormat='第{0}页'}" VerticalAlignment="Center" Margin="0,0,20,0" Foreground="Gray"/>
+                                <Button Content="下一页" VerticalAlignment="Center" Width="80" Foreground="White" Background="{StaticResource AppBgDark}" Command="{Binding NextPageCommand}"/>
                             </StackPanel>
                         </Grid>
                     </Border>
